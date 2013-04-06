@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>	
+	
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://127.0.0.1:3309/mobiledb</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>475356336</value>
+		</property>
+	</bean>
+	
+	<bean id="searchService" class="test.SearchServiceImpl" singleton="false">
+		<property name="searchResultDao">
+			<ref local="searchResultDao" />
+		</property>
+	</bean>
+	
+	<bean id="searchResultDao" class="test.SearchResultDaoImpl" singleton="false">
+		<property name="dataSource">
+			<ref local="myDataSource" />
+		</property>
+	</bean>
+
+
+</beans>
